@@ -25,7 +25,7 @@ const RegisterCtrl = async ({ body }: Request, res: Response) => {
       HandleHttpStatus400(res, response.Error.toString());
     }
   } catch (error) {
-    handleHttpStatus500(res, `Error to register user`);
+    handleHttpStatus500(res, `Error to register user`, error);
   }
 };
 
@@ -46,7 +46,7 @@ const LoginCtrl = async ({ body }: Request, res: Response) => {
       HandleHttpStatus400(res, response.Error.toString());
     }
   } catch (error) {
-    handleHttpStatus500(res, `Error to login`);
+    handleHttpStatus500(res, `Error to login`, error);
   }
 };
 

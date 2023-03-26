@@ -1,13 +1,13 @@
 import {Response} from 'express';
 
-const handleHttpStatus500 = (res:Response, error:string) => 
+const handleHttpStatus500 = (res:Response, error:string, exception?:any) => 
 {
+    console.log(exception);
     res.status(500).send({error})
 }
 
 const HandleHttpStatus400 = (res:Response, error:string, exception?:any) =>{
-    if(exception != null) console.log(exception);
-    
+    console.log(exception);
     res.status(400).send({error});
 }
 

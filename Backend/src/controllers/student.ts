@@ -1,6 +1,6 @@
 import {Response, Request} from 'express';
 import { IStudent } from '../interfaces/student.interface';
-import { Create, Delete, Read, Update } from '../services/student.service';
+import { Create, Delete, Read, ReadById, Update } from '../services/student.service';
 import { HandleHttpStatus400, handleHttpStatus500 } from '../utils/error.handle';
 import { HandleHttpStatus200 } from '../utils/success.handler';
 
@@ -13,7 +13,7 @@ const GetStudents = async ({query}: Request, res: Response) =>
 
         HandleHttpStatus200(res, "", result);
     } catch (error) {
-        handleHttpStatus500(res, "Error_Get_Students")
+        handleHttpStatus500(res, "Error_Get_Students", error)
     }
 }
 
@@ -39,14 +39,14 @@ const Insert = async ({body}: Request, res: Response) =>
         }
     } catch (error) {
         console.log(error);
-        handleHttpStatus500(res, "Error_Create_Student")
+        handleHttpStatus500(res, "Error_Create_Student", error)
     }
 }
 
 const Edit = async ({ body, params }: Request, res: Response)=>
 {
     try {
-        const _id: any = params["_id"];
+        const {_id}: any = params;
         const Student : IStudent = {
             Id: 0,
             Name: body.name,
@@ -64,14 +64,14 @@ const Edit = async ({ body, params }: Request, res: Response)=>
         }
 
     } catch (error) {
-        handleHttpStatus500(res, "Error_Update_Student")
+        handleHttpStatus500(res, "Error_Update_Student", error)
     }
 }
 
 const DeleteStudent = async ({params}: Request, res: Response)=>
 {
     try {
-        const _id: any = params["_id"];
+        const {_id}: any = params;
 
         const response = await Delete(_id);
 
@@ -81,8 +81,29 @@ const DeleteStudent = async ({params}: Request, res: Response)=>
             HandleHttpStatus400(res, response.Error.toString());
         }
     } catch (error) {
-        handleHttpStatus500(res, "Error_Delete_Student")
+        handleHttpStatus500(res, "Error_Delete_Student", error)
     }
 }
 
-export default {GetStudents, Insert, Edit, DeleteStudent }
+const GetStudent = async ({params}: Request, res: Response)=>
+{
+    try {
+        console.log("Entró");
+        
+        console.log(params);
+        
+        const {_id}: any = params;
+
+        const response = await ReadById(_id);
+
+        if (response) {
+            HandleHttpStatus200(res, "", response);
+        } else {
+            HandleHttpStatus400(res, "Data not found", response);
+        }
+    } catch (error) {
+        handleHttpStatus500(res, "Error_Get_Student", error)
+    }
+}
+
+export default {GetStudents, Insert, Edit, DeleteStudent, GetStudent }

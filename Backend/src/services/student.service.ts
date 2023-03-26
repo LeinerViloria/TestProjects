@@ -5,16 +5,14 @@ import { ServiceResult } from './ServiceResult.interface';
 
 const Create = async (student: IStudent) : Promise<ServiceResult> => 
 {
-    const studentFound = await Read("", student.Id);
-
-    const AlreadyExits = studentFound.length > 0;
+    const studentFound = await StudentModel.findOne({Id:student.Id});
 
     let Result : ServiceResult = {
         Success: false,
         Error : [`Student is already saved`]
     };
 
-    if (AlreadyExits) return Result;
+    if (studentFound) return Result;
 
     const CultureToSave = new StudentModel({
         Id: student.Id,
@@ -50,6 +48,14 @@ const Read = async (Name: string, Id: Number = 0) =>
 
     return response;
 };
+
+const ReadById = async (_id: ObjectId) => {
+  if(!_id) throw new Error("Invalid id");
+
+  const response = await StudentModel.findById(_id);
+  return response;
+}
+
 
 const Update = async (
     _id: ObjectId,
@@ -93,4 +99,4 @@ const Update = async (
   };
   
 
-export {Create, Read, Update, Delete}
+export {Create, Read, Update, Delete, ReadById}
