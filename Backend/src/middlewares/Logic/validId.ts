@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { Request, Response, NextFunction } from "express";
-import { HandleHttpStatus400 } from "../../utils/error.handle";
+import { HandleHttpStatus400 } from "../../utils/error.handler";
 
 const validId = async (req: Request, res: Response, next: NextFunction) => {
   const validId = Types.ObjectId.isValid(req.params["_id"]);

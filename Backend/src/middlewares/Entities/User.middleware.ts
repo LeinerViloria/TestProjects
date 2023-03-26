@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { handleHttpStatus500 } from "../../utils/error.handle";
+import { handleHttpStatus500 } from "../../utils/error.handler";
 
 const validBody = async (req: Request, res: Response, next: NextFunction) => {
   if (!req.body.name || !req.body.userName || !req.body.email || !req.body.password)

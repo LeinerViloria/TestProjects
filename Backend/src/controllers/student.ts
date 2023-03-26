@@ -1,7 +1,7 @@
 import {Response, Request} from 'express';
 import { IStudent } from '../interfaces/student.interface';
 import { Create, Delete, Read, ReadById, Update } from '../services/student.service';
-import { HandleHttpStatus400, handleHttpStatus500 } from '../utils/error.handle';
+import { HandleHttpStatus400, handleHttpStatus500 } from '../utils/error.handler';
 import { HandleHttpStatus200 } from '../utils/success.handler';
 
 const GetStudents = async ({query}: Request, res: Response) =>

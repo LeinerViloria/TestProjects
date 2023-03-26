@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { HandleHttpStatus400 } from "../../utils/error.handle";
+import { HandleHttpStatus400 } from "../../utils/error.handler";
 import { verifyToken } from "../../lib/jwt";
 
 const auth = async (req: Request | any, res: Response, next: NextFunction) => {

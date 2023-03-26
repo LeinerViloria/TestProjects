@@ -3,8 +3,9 @@ import { IUser } from "../interfaces/User.interface";
 import { loginUser, registerNewUser } from "../services/Auth.service";
 import {
   HandleHttpStatus400,
+  HandleHttpStatus403,
   handleHttpStatus500,
-} from "../utils/error.handle";
+} from "../utils/error.handler";
 import { HandleHttpStatus200 } from "../utils/success.handler";
 
 const RegisterCtrl = async ({ body }: Request, res: Response) => {
@@ -43,7 +44,7 @@ const LoginCtrl = async ({ body }: Request, res: Response) => {
     if (response.Success) {
       HandleHttpStatus200(res, 'Login success', response.Data);
     } else {
-      HandleHttpStatus400(res, response.Error.toString());
+      HandleHttpStatus403(res, response.Error.toString());
     }
   } catch (error) {
     handleHttpStatus500(res, `Error to login`, error);

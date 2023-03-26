@@ -73,9 +73,7 @@ const loginUser = async (user: IUser): Promise<ServiceResult> => {
 
   if (!isValid) return Result;
 
-  user.Name = existingUser.Name;
-
-  const tokenCreated = await generateToken(existingUser._id, user);
+  const tokenCreated = await generateToken(existingUser._id, existingUser);
   if (!tokenCreated) throw new Error(`Error with jwt service`);
 
   Result.Success = true;

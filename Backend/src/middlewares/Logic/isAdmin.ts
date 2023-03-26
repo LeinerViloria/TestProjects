@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import user from "../../models/User";
-import { HandleHttpStatus400 } from "../../utils/error.handle";
+import { HandleHttpStatus400 } from "../../utils/error.handler";
 
 const isAdmin = async (
   req: Request | any,
