@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { HandleHttpStatus400 } from "../../utils/error.handle";
 import { verifyToken } from "../../lib/jwt";

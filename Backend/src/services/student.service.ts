@@ -50,8 +50,6 @@ const Read = async (Name: string, Id: Number = 0) =>
 };
 
 const ReadById = async (_id: ObjectId) => {
-  if(!_id) throw new Error("Invalid id");
-
   const response = await StudentModel.findById(_id);
   return response;
 }

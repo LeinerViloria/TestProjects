@@ -88,10 +88,6 @@ const DeleteStudent = async ({params}: Request, res: Response)=>
 const GetStudent = async ({params}: Request, res: Response)=>
 {
     try {
-        console.log("Entró");
-        
-        console.log(params);
-        
         const {_id}: any = params;
 
         const response = await ReadById(_id);
