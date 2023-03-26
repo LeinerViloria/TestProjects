@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { HandleHttpStatus400 } from "../../utils/error.handler";
+import { HandleHttpStatus400, HandleHttpStatus403 } from "../../utils/error.handler";
 import { verifyToken } from "../../lib/jwt";
 
 const auth = async (req: Request | any, res: Response, next: NextFunction) => {
@@ -16,7 +16,7 @@ const auth = async (req: Request | any, res: Response, next: NextFunction) => {
 
     next();
   } catch (error) {
-    return HandleHttpStatus400(
+    return HandleHttpStatus403(
       res,
       `Authorization denied: Invalid token`,
       error

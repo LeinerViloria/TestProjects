@@ -26,11 +26,7 @@ const generateToken = async (_id: any, user: IUser) => {
 };
 
 const verifyToken = async (token: string) => {
-  try {
-    return jwt.verify(token, String(process.env.SK_JWT));
-  } catch (error) {
-    throw new Error(String(error));
-  }
+  return jwt.verify(token, String(process.env.SK_JWT));
 };
 
 export { generateToken, verifyToken };
