@@ -7,7 +7,7 @@ const auth = async (req: Request | any, res: Response, next: NextFunction) => {
 
   if (!token) return HandleHttpStatus400(res, `Authorization denied: No token`);
 
-  token = token.split(" ")[1];
+  token = token.split(" ").pop();
 
   if (!token) return HandleHttpStatus400(res, `Authorization denied: No token`);
 
