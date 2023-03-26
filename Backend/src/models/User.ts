@@ -18,6 +18,7 @@ const UserSchema = new Schema<IUser>(
     },
     Email: {
       type: String,
+      unique:true,
       required: true,
     },
     Password: {

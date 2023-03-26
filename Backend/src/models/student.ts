@@ -6,6 +6,7 @@ const StudentSchema = new Schema<IStudent>
     {
         Id:{
             type:Number,
+            unique:true,
             required:true
         },
         Name:{
