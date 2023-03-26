@@ -1,3 +1,6 @@
+import { ObjectId } from "mongoose";
+
 export interface IBase{
-    DbStatus?:boolean
+    DbStatus?:boolean,
+    StorageId?:ObjectId
 }

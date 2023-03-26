@@ -24,7 +24,11 @@ const StudentSchema = new Schema<IStudent>
             type:String,
             enum:['HOMBRE', 'MUJER'],
             required:true
-        }
+        },
+        DbStatus: {
+            type: Boolean,
+            required: true,
+        },
     },
     {
         timestamps: true,

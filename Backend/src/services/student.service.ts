@@ -19,7 +19,8 @@ const Create = async (student: IStudent) : Promise<ServiceResult> =>
         Name: student.Name,
         LastName: student.LastName,
         Age: student.Age,
-        Genre: student.Genre
+        Genre: student.Genre,
+        DbStatus: true
     });
 
     const response = await CultureToSave.save();
@@ -66,7 +67,8 @@ const Update = async (
         Name: body.Name,
         LastName: body.LastName,
         Age: body.Age,
-        Genre: body.Genre
+        Genre: body.Genre,
+        DbStatus: body.DbStatus
       },
       {
         new: true,
